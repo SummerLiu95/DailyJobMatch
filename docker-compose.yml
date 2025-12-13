@@ -10,7 +10,9 @@ services:
       - n8n_data:/home/node/.n8n
     environment:
       N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      # Hostname for the n8n instance
       N8N_HOST: "localhost"
+      # Public URL for webhooks and UI
       # WEB_URL: "http://192.168.100.113:5678"
       N8N_SECURE_COOKIE: "false"
 

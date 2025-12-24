@@ -5,16 +5,18 @@ services:
     container_name: n8n
     restart: unless-stopped
     ports:
-      - "5678:5678"
+      - "${N8N_PORT:-5678}:${N8N_PORT:-5678}"
     volumes:
       - n8n_data:/home/node/.n8n
     environment:
-      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
-      # Hostname for the n8n instance
-      N8N_HOST: "localhost"
-      # Public URL for webhooks and UI
-      # WEB_URL: "http://192.168.100.113:5678"
-      N8N_SECURE_COOKIE: "false"
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=${N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:-true}
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT:-5678}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE:-true}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-Asia/Hong_Kong}
+      - TZ=${TZ:-Asia/Hong_Kong}
 
 volumes:
   n8n_data:
